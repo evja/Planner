@@ -11,14 +11,14 @@ before_action :set_user
   end
 
   def new
-    @task = Task.new
+    @task = @user.tasks.build
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = @user.tasks.build(task_params)
     if @task.save
       flash[:success] = "Task #{@task.title} created."
-      redirect_to @task
+      redirect_to user_task_path(@user, @task)
     else
       render 'new'
     end
@@ -32,8 +32,10 @@ before_action :set_user
       if @task.is_completed?
         @task.completed_at = Date.today
         @task.save
+      elsif 
+        @task.save
       end
-      redirect_to tasks_path
+      redirect_to user_tasks_path
     else
       flash[:danger] = "Task creation faild"
       render 'edit'
@@ -44,7 +46,7 @@ before_action :set_user
      @task = Task.find(params[:id])
      @task.delete
 
-     redirect_to tasks_path
+     redirect_to user_tasks_path
   end
 
 
