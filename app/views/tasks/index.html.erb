@@ -1,2 +1,12 @@
-<h1>Tasks#index</h1>
-<p>Find me in app/views/tasks/index.html.erb</p>
+<h1>All Tasks</h1>
+
+
+<%= @tasks.each do |task| %>
+
+  <%= taks.title %>
+  <%= task.description %>
+  <%= task.is_completed %>
+  <%= task.completed_at %>
+  <%= task.due_at %>
+
+<% end %>
