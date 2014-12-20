@@ -2,6 +2,7 @@ class TasksController < ApplicationController
 before_action :authenticate_user!
 before_action :set_task, only: [:show, :edit, :update, :destroy]
 before_action :set_user
+before_action :list,  only: [:this_week, :this_month, :to_day]
 
   def index
   	@tasks = current_user.tasks
@@ -45,7 +46,6 @@ before_action :set_user
   end
 
   def destroy
-    @task = Task.find(params[:id])
     if @task.is_completed
       redirect_to user_tasks_path
     else
@@ -58,39 +58,47 @@ before_action :set_user
   # collects tasks dew in the next 7 days 
   def this_week
     @tasks = []
-    current_user.tasks.each do |task|
+    @all_tasks.each do |task|
       @tasks << task if task.due_date > Time.now && task.due_date < Time.now+7.days
     end
   end
-
+  # reterns the tasks dew in the curent month
   def this_month
     due_time = Time.now
     month = due_time.mon
     @tasks = []
-    current_user.tasks.each do |task|
+    @all_tasks.each do |task|
       @tasks << task if task.due_date.mon == month
     end
   end
-
+  #reterns the tasks due in to day
   def to_day
     @tasks = []
     t = Time.now
     today = t.yday
-    current_user.tasks.each do |task|
+    @all_tasks.each do |task|
       @tasks << task if task.due_date.yday == today
     end
   end
 
   private
 
+  # orders the users tasks by due_date 
+  def list
+    @all_tasks = current_user.tasks.order(due_date: :asc)
+  end
+
+  # sets the curent task
   def set_task
 	  @task = Task.find(params[:id])
   end
 
+  # sets the curent user
   def set_user
     @user = current_user
   end
 
+  # strong params for the task modle
   def task_params
     params.require(:task).permit(:title, :description, :due_date, :is_complete, :complete_date, :user_id )
   end
