@@ -3,7 +3,8 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <% if current_user %>
-        <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "navbar-brand" %>
+        <span><%= link_to 'Log Out  |', destroy_user_session_path, method: :delete, class: "navbar-brand" %></span>
+        <span><%= link_to "#{@user.email}", user_tasks_path(current_user), class: "navbar-brand" %></span>
       <% else %>
         <%= link_to 'Log In', new_user_session_path, class: "navbar-brand" %>
       <% end %>

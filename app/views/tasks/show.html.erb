@@ -1,11 +1,12 @@
 <h1><%= @task.title %></h1>
+<div class="container">
+  <h4><%= @task.title %></h4>
+  <h4><%= @task.description %></h4>
+  <h4><%= @task.is_completed %></h4>
+  <h4><%= @task.completed_at %></h4>
+  <h4><%= @task.due_date %></h4>
 
-  <%= @task.title %>
-  <%= @task.description %>
-  <%= @task.is_completed %>
-  <%= @task.completed_at %>
-  <%= @task.due_date %>
-
-<%=  link_to 'Back', user_tasks_path %>
-<%=  link_to 'Edit', edit_user_task_path(@user, @task) %>
-<%=  link_to 'Delete', user_task_path(@user, @task), method: :delete %>
+<%=  link_to 'Back', user_tasks_path, class: 'btn btn-success' %>
+<%=  link_to 'Edit', edit_user_task_path(@user, @task),class: 'btn btn-default' %>
+<%=  link_to 'Delete', user_task_path(@user, @task), method: :delete, class: 'btn btn-danger' %>
+</div>
