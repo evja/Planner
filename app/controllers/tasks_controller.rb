@@ -4,7 +4,7 @@ before_action :set_task, only: [:show, :edit, :update, :destroy]
 before_action :set_user
 
   def index
-  	@tasks = current_user.tasks.due_date >  time.now
+  	@tasks = current_user.tasks
   end
 
   def show
@@ -46,12 +46,13 @@ before_action :set_user
 
   def destroy
     @task = Task.find(params[:id])
-    if is_completed?
+    if @task.is_completed
       redirect_to user_tasks_path
     else
       @task.user.task_total -= 1 #if the task isent compleat decrece the user score by 1
     end
     @task.delete
+    redirect_to user_tasks_path
   end
 
   # collects tasks dew in the next 7 days 
@@ -71,9 +72,7 @@ before_action :set_user
     end
   end
 
-
-
-private
+  private
 
   def set_task
 	  @task = Task.find(params[:id])
@@ -84,10 +83,8 @@ private
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :due_date,
-                                 :is_complete, :complete_date, :user_id )
+    params.require(:task).permit(:title, :description, :due_date, :is_complete, :complete_date, :user_id )
   end
-
 end
 
 
