@@ -1,9 +1,11 @@
-<h1><%= @task.name %></h1>
+<h1><%= @task.title %></h1>
 
-  <%= taks.title %>
-  <%= task.description %>
-  <%= task.is_completed %>
-  <%= task.completed_at %>
-  <%= task.due_at %>
+  <%= @task.title %>
+  <%= @task.description %>
+  <%= @task.is_completed %>
+  <%= @task.completed_at %>
+  <%= @task.due_date %>
 
-  <%=  link_to 'Back', tasks %>
+<%=  link_to 'Back', tasks_path %>
+<%=  link_to 'Edit', edit_task_path(@task) %>
+<%=  link_to 'Delete', task_path(@task), method: :delete %>
