@@ -31,7 +31,7 @@ class TasksController < ApplicationController
         @task.completed_at = Date.today
         @task.save
       end
-      redirect_to @task
+      redirect_to @tasks
     else
       flash[:danger] = "Task creation faild"
       render 'edit'
