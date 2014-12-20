@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :index] do
     resources :tasks
+    get '/this_week', to: 'tasks#this_week', as: :this_week
+    get '/this_month', to: 'tasks#this_month', as: :this_month
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

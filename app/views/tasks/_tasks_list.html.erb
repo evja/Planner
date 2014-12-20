@@ -1,0 +1,11 @@
+<% @tasks.each do |task| %>
+  <div id="tasks">
+  <br>
+    <%= task.title %>
+    <%= task.is_completed %>
+    <%= task.completed_at %>
+    <%= task.due_date %>
+
+    <%= link_to "Show", user_task_path(@user, task) %>
+  </div>
+<% end %>

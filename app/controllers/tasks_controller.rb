@@ -56,14 +56,14 @@ before_action :set_user
   end
 
   # collects tasks dew in the next 7 days 
-  def weeks_tasks
+  def this_week
     @tasks = []
     current_user.tasks.each do |task|
       @tasks << task if task.due_date > Time.now && task.due_date < Time.now+7.days
     end
   end
 
-  def months_tasks
+  def this_month
     due_time = Time.now
     month = due_time.mon
     @tasks = []
