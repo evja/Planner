@@ -14,10 +14,11 @@
 end
 
 users = User.all
-20.times do
+20.times do |n|
 	title = "this is a task"
   description = Faker::Lorem.sentence(5)
-  users.each { |user| user.tasks.create!(description: description, title: title) }
+  due_date = n.days.from_now
+  users.each { |user| user.tasks.create!(description: description, title: title, due_date: due_date) }
 end
 
 
