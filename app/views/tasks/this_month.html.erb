@@ -1,12 +1,12 @@
 <h1>This Month</h1>
 
 
-<%= render 'nav' %>
-<br>
-<%= link_to "New Task...", new_user_task_path %>
+ <%= render 'nav' %>
+  <br>
+  <span class="new-link"><%= link_to "New Task...", new_user_task_path, class: 'btn btn-success' %></span>
 
-<%= render 'tasks_list' %>
-<br>
-<%= link_to "New Task...", new_user_task_path %>
- 
+  <%= render 'tasks_list' %>
+  <br>
+  <span class="new-link"><%= link_to "New Task...", new_user_task_path, class: 'btn btn-success' %></span>
+
 
