@@ -4,7 +4,7 @@
     <div class="navbar-header">
       <% if current_user %>
         <span><%= link_to 'Log Out  |', destroy_user_session_path, method: :delete, class: "navbar-brand" %></span>
-        <span><%= link_to "#{@user.email}", user_tasks_path(current_user), class: "navbar-brand" %></span>
+        <span><%= link_to "#{current_user.email}", user_tasks_path(current_user), class: "navbar-brand" %></span>
       <% else %>
         <%= link_to 'Log In', new_user_session_path, class: "navbar-brand" %>
       <% end %>
