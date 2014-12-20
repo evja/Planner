@@ -78,6 +78,7 @@ before_action :set_user
     today = t.yday
     current_user.tasks.each do |task|
       @tasks << task if task.due_date.yday == today
+    end
   end
 
   private
@@ -93,6 +94,7 @@ before_action :set_user
   def task_params
     params.require(:task).permit(:title, :description, :due_date, :is_complete, :complete_date, :user_id )
   end
+
 end
 
 
