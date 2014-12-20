@@ -3,13 +3,13 @@
   
   <%= f.label :title %>
   <%= f.text_field :title %>
-
+  <br><br>
   <%= f.label :description %>
   <%= f.text_area :description %>
-
-  <%= f.label :due_at, 'Time due:'  %>
-  <%= f.datetime :due_at %>
-
+  <br><br>
+  <%= f.label :due_date, 'Time due:'  %>
+  <%= f.datetime_select :due_date %>
+  <br><br>
   <%= f.submit %>
 
 <% end %>
