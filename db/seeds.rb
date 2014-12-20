@@ -5,12 +5,20 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-10.times do |n|
-  title = Faker::Name.name
-  description = "example-#{n+1} task"
-  Task.create!(title:  title,
-               description: description,
-               due_date:              5.days.from_now,
-               is_completed: false,)
+30.times do |n|
+  email = "example-#{n+1}@railstutorial.org"
+  password = "password"
+  User.create!(email: email,
+               password:              password,
+               password_confirmation: password)
 end
+
+users = User.all
+20.times do
+	title = "this is a task"
+  description = Faker::Lorem.sentence(5)
+  users.each { |user| user.tasks.create!(description: description, title: title) }
+end
+
+
  
