@@ -1,2 +1,9 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<h1><%= @task.name %></h1>
+
+  <%= taks.title %>
+  <%= task.description %>
+  <%= task.is_completed %>
+  <%= task.completed_at %>
+  <%= task.due_at %>
+
+  <%=  link_to 'Back', tasks %>
