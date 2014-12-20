@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  root 'static_pages#home'
+
+  get 'static_pages/about'
+
   get 'tasks/index'
 
   get 'tasks/show'
