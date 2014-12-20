@@ -4,7 +4,7 @@ before_action :set_task, only: [:show, :edit, :update, :destroy]
 before_action :set_user
 
   def index
-  	@tasks = current_user.tasks
+  	@tasks = current_user.tasks.due_date >  time.now
   end
 
   def show
@@ -18,6 +18,7 @@ before_action :set_user
     @task = @user.tasks.build(task_params)
     if @task.save
       flash[:success] = "Task #{@task.title} created."
+      @task.user.task_total += 1
       redirect_to user_task_path(@user, @task)
     else
       render 'new'
@@ -31,6 +32,7 @@ before_action :set_user
     if @task.update_attributes(task_params)
       if @task.is_completed?
         @task.completed_at = Date.today
+        @task.user.score += 1
         @task.save
       elsif 
         @task.save
@@ -43,11 +45,32 @@ before_action :set_user
   end
 
   def destroy
-     @task = Task.find(params[:id])
-     @task.delete
-
-     redirect_to user_tasks_path
+    @task = Task.find(params[:id])
+    if is_completed?
+      redirect_to user_tasks_path
+    else
+      @task.user.task_total -= 1 #if the task isent compleat decrece the user score by 1
+    end
+    @task.delete
   end
+
+  # collects tasks dew in the next 7 days 
+  def weeks_tasks
+    @tasks = []
+    current_user.tasks.each do |task|
+      @tasks << task if task.due_date > Time.now && task.due_date < Time.now+7.days
+    end
+  end
+
+  def months_tasks
+    due_time = Time.now
+    month = due_time.mon
+    @tasks = []
+    current_user.tasks.each do |task|
+      @tasks << task if task.due_date.mon == month
+    end
+  end
+
 
 
 private
@@ -63,7 +86,6 @@ private
   def task_params
     params.require(:task).permit(:title, :description, :due_date,
                                  :is_complete, :complete_date, :user_id )
-
   end
 
 end
