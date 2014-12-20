@@ -5,9 +5,7 @@ Rails.application.routes.draw do
 
   get '/about' => 'static_pages#about', as: :about
 
-  # devise_for :users, :controllers => { registrations: 'registrations'}
-
-  resources :users do
+  resources :users, only: [:show, :index] do
     resources :tasks
   end
 
