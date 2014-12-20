@@ -1,11 +1,16 @@
+<br>
+<div class='block-box'>
 <% @tasks.each do |task| %>
-  <div id="tasks">
-  <br>
-    <%= task.title %>
-    <%= task.is_completed %>
-    <%= task.completed_at %>
-    <%= task.due_date %>
 
-    <%= link_to "Show", user_task_path(@user, task) %>
+  <div class="tasks">
+    <ul>
+      <li><%= task.title %></li>
+      
+      <li class='due'><strong>Due: </strong><%= task.due_date %></li>
+
+      <%= link_to "Show", user_task_path(@user, task) %>
+    </ul>
+
   </div>
 <% end %>
+</div>
