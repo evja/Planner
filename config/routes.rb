@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get '/about' => 'static_pages#about', as: :about
 
-  resources :user do
+  resources :users, only: [:show, :index] do
     resources :tasks
   end
 
