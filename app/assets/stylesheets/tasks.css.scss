@@ -6,8 +6,24 @@ h1 {
   text-align: center;
 }
 
-#tasks {
+.tasks {
   margin: 5px;
   padding: 15px;
-  background-color: green;
+  border: 1px solid black;
+  max-width: 12%;
+  border-radius: 5px;
+  display: inline-block;
+  .due {
+    color: #993366;
+  }
+  ul  { 
+    padding: 0;
+    li {
+    list-style: none;
+    }
+  }
+}
+
+.block-box {
+  padding-left: 5%;
 }
