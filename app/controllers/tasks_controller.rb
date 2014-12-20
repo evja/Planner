@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
 before_action :set_task, only: [:show, :edit, :update, :destroy]
+
   def index
   	@tasks = Task.all
   end
@@ -43,7 +44,7 @@ before_action :set_task, only: [:show, :edit, :update, :destroy]
      redirect_to root_url
   end
     
-  end
+
 
 
   private
