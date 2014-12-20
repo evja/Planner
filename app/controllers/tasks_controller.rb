@@ -59,7 +59,7 @@ private
 
   def task_params
     params.require(:task).permit(:title, :description, :due_date,
-                                 :is_complete, :complete_date )
+                                 :is_complete, :complete_date, :user_id)
   end
 
 end
