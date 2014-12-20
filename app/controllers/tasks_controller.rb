@@ -72,6 +72,14 @@ before_action :set_user
     end
   end
 
+  def to_day
+    @tasks = []
+    t = Time.now
+    today = t.yday
+    current_user.tasks.each do |task|
+      @tasks << task if task.due_date.yday == today
+  end
+
   private
 
   def set_task
