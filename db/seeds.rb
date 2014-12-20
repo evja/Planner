@@ -17,7 +17,7 @@ users = User.all
 20.times do
 	title = "this is a task"
   description = Faker::Lorem.sentence(5)
-  users.each { |user| user.tasks.create!(content: content) }
+  users.each { |user| user.tasks.create!(description: description, title: title) }
 end
 
 
