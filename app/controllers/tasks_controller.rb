@@ -11,15 +11,15 @@ before_action :set_user
   end
 
   def new
-    @task = Task.new
+    @task = @user.tasks.build
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = @user.tasks.build(task_params)
     if @task.save
       flash[:success] = "Task #{@task.title} created."
       @task.user.task_total += 1
-      redirect_to @task
+      redirect_to user_task_path(@user, @task)
     else
       render 'new'
     end
@@ -34,8 +34,10 @@ before_action :set_user
         @task.completed_at = Date.today
         @task.user.score += 1
         @task.save
+      elsif 
+        @task.save
       end
-      redirect_to tasks_path
+      redirect_to user_tasks_path
     else
       flash[:danger] = "Task creation faild"
       render 'edit'
@@ -43,13 +45,13 @@ before_action :set_user
   end
 
   def destroy
-     @task = Task.find(params[:id])
-     if is_completed?
-      redirect_to tasks_path
+    @task = Task.find(params[:id])
+    if is_completed?
+      redirect_to user_tasks_path
     else
       @task.user.task_total -= 1 #if the task isent compleat decrece the user score by 1
     end
-      @task.delete
+    @task.delete
   end
 
   # collects tasks dew in the next 7 days 
@@ -84,7 +86,6 @@ private
   def task_params
     params.require(:task).permit(:title, :description, :due_date,
                                  :is_complete, :complete_date, :user_id )
-
   end
 
 end
