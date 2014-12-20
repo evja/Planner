@@ -1,12 +1,14 @@
 <h1>All Tasks</h1>
 
+<%= link_to "New Task...", new_task_path %>
+<br><br>
+<% @tasks.each do |task| %>
 
-<%= @tasks.each do |task| %>
-
-  <%= taks.title %>
-  <%= task.description %>
+  <%= task.title %>
   <%= task.is_completed %>
   <%= task.completed_at %>
-  <%= task.due_at %>
+  <%= task.due_date %>
 
+  <%= link_to "Show", task %>
+  <br><br>
 <% end %>
