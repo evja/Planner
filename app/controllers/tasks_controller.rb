@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
 before_action :authenticate_user!
-before_action :set_task, only: [:show, :edit, :update, :destroy]
+before_action :set_task, only: [:show, :edit, :update, :destroy, :toggle_is_completed]
 before_action :set_user
 before_action :list,  only: [:this_week, :this_month, :to_day]
 
@@ -37,7 +37,7 @@ before_action :list,  only: [:this_week, :this_month, :to_day]
         @task.completed_at = Date.today
         @task.user.score += 1
         @task.user.save
-      elsif 
+      elsif
         @task.save
       end
       redirect_to user_tasks_path
@@ -57,7 +57,7 @@ before_action :list,  only: [:this_week, :this_month, :to_day]
     redirect_to user_tasks_path
   end
 
-  # collects tasks dew in the next 7 days 
+  # collects tasks dew in the next 7 days
   def this_week
     @tasks = []
     @all_tasks.each do |task|
@@ -86,11 +86,17 @@ before_action :list,  only: [:this_week, :this_month, :to_day]
   def set_score
     @score = :score / :task_total
   end
-    
+
+  def toggle_is_completed
+    @task.toggle(:is_completed)
+    @task.save
+    redirect_to user_tasks_path
+  end
+
 
   private
 
-  # orders the users tasks by due_date 
+  # orders the users tasks by due_date
   def list
     @all_tasks = current_user.tasks.order(due_date: :asc)
   end
