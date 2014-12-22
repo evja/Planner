@@ -3,6 +3,16 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <% if current_user %>
+        <div>
+          <%= if current_user.score == 0 
+            "You have completed #{ current_user.score} task's" 
+            end
+           if current_user.score > 0 && current_user.task_total > 0 
+                 current_user.score / current_user.task_total 
+                 " You're score is #{ current_user.score}"
+              end
+          %>
+        </div>
         <span><%= link_to 'Log Out  |', destroy_user_session_path, method: :delete, class: "navbar-brand" %></span>
         <span><%= link_to "#{current_user.email}", user_tasks_path(current_user), class: "navbar-brand" %></span>
       <% else %>

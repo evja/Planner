@@ -21,6 +21,7 @@ before_action :list,  only: [:this_week, :this_month, :to_day]
     if @task.save
       flash[:success] = "Task #{@task.title} created."
       @task.user.task_total += 1
+      @task.user.save
       redirect_to user_task_path(@user, @task)
     else
       render 'new'
@@ -32,10 +33,10 @@ before_action :list,  only: [:this_week, :this_month, :to_day]
 
   def update
     if @task.update_attributes(task_params)
-      if @task.is_completed?
+      if @task.is_completed
         @task.completed_at = Date.today
         @task.user.score += 1
-        @task.save
+        @task.user.save
       elsif 
         @task.save
       end
@@ -82,6 +83,11 @@ before_action :list,  only: [:this_week, :this_month, :to_day]
     end
   end
 
+  def set_score
+    @score = :score / :task_total
+  end
+    
+
   private
 
   # orders the users tasks by due_date 
@@ -101,7 +107,7 @@ before_action :list,  only: [:this_week, :this_month, :to_day]
 
   # strong params for the task modle
   def task_params
-    params.require(:task).permit(:title, :description, :due_date, :is_complete, :complete_date, :user_id )
+    params.require(:task).permit(:title, :description, :due_date, :is_completed, :complete_date, :user_id )
   end
 
 end

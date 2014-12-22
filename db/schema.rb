@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20141220204825) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "score"
+    t.integer  "score",                  default: 0
     t.integer  "task_total",             default: 0
   end
 
