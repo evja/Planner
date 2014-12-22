@@ -6,26 +6,42 @@ h1 {
   text-align: center;
 }
 
+.nav-list {
+  margin-right: auto;
+  margin-left: auto;
+  width: 49%;
+  ul {
+    margin: 0px 26%;
+  }
+}
+
 .tasks {
   margin: 5px;
   padding: 15px;
-  border: 1px solid black;
-  max-width: 12%;
+  border: 2px solid black;
+  max-width: 150px;
+  max-height: 12%;
   border-radius: 5px;
   display: inline-block;
+  background-color: #cfc;
+  text-align: center;
   .due {
     color: #993366;
   }
-  ul  { 
+  ul  {
     padding: 0;
     li {
     list-style: none;
     }
+    li:first-child {
+      text-decoration: underline;
+    }
+
   }
 }
 
 .block-box {
-  padding-left: 5%;
+  padding: 5px 5%;
 }
 
 .lined {
