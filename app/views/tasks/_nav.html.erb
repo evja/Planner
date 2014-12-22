@@ -1,13 +1,9 @@
-<div class="row">
-  <div class="col-md-5"></div>
-    <div class="col-md-3">
-      <ul class="nav nav-pills">
-      <li><%= link_to 'Today', user_to_day_path, class: 'btn btn-primary' %></li>  
-      <li><%= link_to 'Week', user_this_week_path, class: 'btn btn-primary' %></li>
-      <li><%= link_to 'Month', user_this_month_path, class: 'btn btn-primary' %></li>
-      <li><%= link_to 'All', user_tasks_path, class: 'btn btn-primary' %></li>
 
-      </ul></div>
-    <div class="col-md-4"></div>
-  </div>
-</div>
+    <div class="nav-list">
+      <ul class="nav nav-pills">
+        <li><%= link_to 'Today', user_to_day_path, class: 'btn btn-primary' %></li>
+        <li><%= link_to 'Week', user_this_week_path, class: 'btn btn-primary' %></li>
+        <li><%= link_to 'Month', user_this_month_path, class: 'btn btn-primary' %></li>
+        <li><%= link_to 'All', user_tasks_path, class: 'btn btn-primary' %></li>
+      </ul>
+    </div>

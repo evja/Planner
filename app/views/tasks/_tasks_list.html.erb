@@ -4,11 +4,19 @@
 
   <div class="tasks">
     <ul>
-      <li><%= task.title %></li>
-      
-      <li class='due'><strong>Due: </strong><%= task.due_date %></li>
+      <li><%= task.title.upcase %></li>
 
-      <%= link_to "Show", user_task_path(@user, task) %>
+      <li class='due'></strong><%= task.due_date.strftime("Due: %m/%d/%Y") %></li>
+      <li class='due'></strong><%= task.due_date.strftime("At: %I:%M %p") %></li><br/>
+
+      <%= link_to "Show", user_task_path(@user, task), class: "btn btn-success btn-xs" %>
+      <%= link_to "Delete", user_task_path(@user, task), method: :delete, class: "btn btn-danger btn-xs" %>
+
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary inactive btn-xs">
+          <%= link_to "Completed", user_task_path(@user, task), type: "checkbox", autocomplete: "off" %>
+        </label>
+      </div>
     </ul>
 
   </div>
