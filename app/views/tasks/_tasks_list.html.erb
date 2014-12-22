@@ -11,12 +11,7 @@
 
       <%= link_to "Show", user_task_path(@user, task), class: "btn btn-success btn-xs" %>
       <%= link_to "Delete", user_task_path(@user, task), method: :delete, class: "btn btn-danger btn-xs" %>
-
-      <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary inactive btn-xs">
-          <%= link_to "Completed", user_task_path(@user, task), type: "checkbox", autocomplete: "off" %>
-        </label>
-      </div>
+      <%= link_to "Completed", user_status_path(@user, task), method: :patch, autocomplete: "off", class: "btn btn-success btn-xs" %>
     </ul>
 
   </div>

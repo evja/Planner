@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   devise_for :users
 
   root 'static_pages#home'
@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get '/this_week', to: 'tasks#this_week', as: :this_week
     get '/this_month', to: 'tasks#this_month', as: :this_month
     get '/to_day', to: 'tasks#to_day', as: :to_day
+    patch '/toggle_completed/:id', to: 'tasks#toggle_is_completed', as: :status
 
   end
 
